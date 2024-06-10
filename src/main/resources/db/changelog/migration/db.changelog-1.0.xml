@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+<!--    <changeSet id="1" author="kinman">-->
+<!--        <sql dbms="postgresql" endDelimiter=";">-->
+<!--            CREATE SCHEMA public;-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+
+    <changeSet id="1" author="kinman">
+<!--        <createTable tableName="weather_stations" schemaName="public">-->
+        <createTable tableName="weather_stations">
+            <column name="station_name" type="varchar(100)"/>
+            <column name="measurement" type="double"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="kinman">
+        <loadData
+                file="../../../data/weather_stations.csv"
+                tableName="weather_stations"
+                separator=";"
+                relativeToChangelogFile="true"
+        />
+    </changeSet>
+
+
+</databaseChangeLog>
